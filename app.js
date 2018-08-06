@@ -11,8 +11,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // all routes must be defined here.
 app.get('/', (req, res) => {
-  res.send({
+  res.json({
     medicine: 'crocin',
+    no: 123,
+    day: 'saturday',
   });
 });
 
