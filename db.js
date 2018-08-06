@@ -1,7 +1,10 @@
 import mongoose from 'mongoose';
 const {
-  db: { host, database, username, password },
-} = require('./config').default;
+  db: { host, database, username, password, port },
+} = require('./config');
+
+const url = `mongodb://${username}:${password}@${host}:${port}/${database}`;
+console.log(url);
 
 class Database {
   constructor() {
@@ -10,7 +13,7 @@ class Database {
 
   _connect() {
     mongoose
-      .connect(`mongodb://${username}:${password}@${host}/${database}`)
+      .connect(url)
       .then(() => {
         console.log('Database connection successful');
       })

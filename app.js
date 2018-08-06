@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-const config = require('./config/').default;
-const port = config.port;
+const port = process.env.PORT || 3000;
+
 const bodyParser = require('body-parser');
 import { Database } from './db';
 
@@ -32,4 +32,4 @@ app.use((err, req, res, next) => {
 
 app.listen(port);
 
-module.exports = db;
+module.exports = Database;
