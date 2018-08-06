@@ -12,9 +12,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // all routes must be defined here.
 app.get('/', (req, res) => {
   res.json({
-    medicine: 'crocin',
-    no: 123,
-    day: 'saturday',
+    messages: [
+      { text: 'Welcome to the Chatfuel Rockets!' },
+      { text: 'What are you up to?' },
+    ],
   });
 });
 
