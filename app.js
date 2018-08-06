@@ -11,7 +11,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // all routes must be defined here.
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  res.send({
+    medicine: 'crocin',
+  });
 });
 
 // If no route found, it must be redirected to 404
