@@ -1,23 +1,21 @@
-const express = require('express');
+import express from 'express';
+import { json, urlencoded } from 'body-parser';
+import redis from 'redis';
+import Redis from './redis';
+
 const app = express();
 const port = process.env.PORT || 3000;
-
-const bodyParser = require('body-parser');
-import { Database } from './db';
+const redisClient = new Redis(redis);
+export { redisClient };
 
 app.use(express.static(__dirname + './public'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(json());
+app.use(urlencoded({ extended: false }));
 
 // all routes must be defined here.
-app.get('/', (req, res) => {
-  res.json({
-    messages: [
-      { text: 'Welcome to the Chatfuel Rockets!' },
-      { text: 'What are you up to?' },
-    ],
-  });
-});
+import index from './routes/';
+
+app.use('/', index);
 
 // If no route found, it must be redirected to 404
 app.use((req, res, next) => {
@@ -36,5 +34,3 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(port);
-
-module.exports = Database;
