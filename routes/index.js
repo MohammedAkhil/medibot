@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
 import axios from 'axios';
-import { saveUserLocation, getLocation } from '../models/index';
+import {
+  saveUserLocation,
+  getLocation,
+  searchPlaces
+} from '../models/index';
 
 router.post('/', async (req, res) => {
   const location = req.body;
@@ -9,9 +13,12 @@ router.post('/', async (req, res) => {
   await getLocation('location');
   const response = await searchPlaces(location);
   res.json({
-    messages: [
-      { text: 'Welcome to the Chatfuel Rockets!' },
-      { text: 'What are you up to?' },
+    messages: [{
+        text: 'Welcome to the Chatfuel Rockets!'
+      },
+      {
+        text: 'What are you up to?'
+      },
     ],
   });
 });
